@@ -5,12 +5,8 @@ import { SupabaseClient } from '@supabase/supabase-js'
 export function createSupabaseServerClient(): SupabaseClient {
   const cookieStore = cookies()
 
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
-  if (!url || !key) {
-    throw new Error('Supabase URL or Key is missing');
-  }
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL ?? 'https://placeholder.supabase.co';
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? 'placeholder-anon-key';
 
   return createServerClient(
     url,
@@ -24,18 +20,14 @@ export function createSupabaseServerClient(): SupabaseClient {
           try {
             cookieStore.set({ name, value, ...options })
           } catch {
-            // The `set` method was called from a Server Component.
-            // This can be ignored if you have middleware refreshing
-            // user sessions.
+            // Called from Server Component — safe to ignore
           }
         },
         remove(name: string, options: CookieOptions) {
           try {
             cookieStore.set({ name, value: '', ...options })
           } catch {
-            // The `remove` method was called from a Server Component.
-            // This can be ignored if you have middleware refreshing
-            // user sessions.
+            // Called from Server Component — safe to ignore
           }
         },
       },

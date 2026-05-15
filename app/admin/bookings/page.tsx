@@ -1,5 +1,7 @@
 "use client";
 
+export const dynamic = 'force-dynamic';
+
 import { useState, useEffect, useCallback } from "react";
 import { createClient } from "@/lib/supabase";
 import { CalendarCheck, Loader2, Search, Trash2, MessageCircle, CheckCircle2, XCircle } from "lucide-react";
