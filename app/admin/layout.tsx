@@ -15,6 +15,7 @@ import {
   Settings,
   Dumbbell,
   FileText,
+  CalendarCheck,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -47,6 +48,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     { name: "Kelola Member", href: "/admin/members", icon: Users },
     { name: "Kelola Trainer", href: "/admin/trainers", icon: UserSquare2 },
     { name: "Artikel / Blog", href: "/admin/articles", icon: FileText },
+    { name: "Booking Masuk", href: "/admin/bookings", icon: CalendarCheck },
     { name: "Pengaturan Website", href: "/admin/pengaturan", icon: Settings },
   ];
 

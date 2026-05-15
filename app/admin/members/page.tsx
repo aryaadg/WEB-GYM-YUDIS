@@ -11,7 +11,6 @@ import {
   Loader2,
   Users,
   CheckCircle2,
-  AlertCircle,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -29,15 +28,27 @@ type Member = {
   created_at: string;
 };
 
-const EMPTY_FORM = {
+type FormState = {
+  full_name: string;
+  email: string;
+  phone: string;
+  gender: "Pria" | "Wanita";
+  membership_type: "Basic" | "Premium" | "Elite";
+  membership_start: string;
+  membership_end: string;
+  status: "Aktif" | "Tidak Aktif" | "Expired";
+  notes: string;
+};
+
+const EMPTY_FORM: FormState = {
   full_name: "",
   email: "",
   phone: "",
-  gender: "Pria" as const,
-  membership_type: "Basic" as const,
+  gender: "Pria",
+  membership_type: "Basic",
   membership_start: "",
   membership_end: "",
-  status: "Aktif" as const,
+  status: "Aktif",
   notes: "",
 };
 
@@ -60,7 +71,7 @@ export default function AdminMembersPage() {
   const [filterStatus, setFilterStatus] = useState("all");
   const [showModal, setShowModal] = useState(false);
   const [editing, setEditing] = useState<Member | null>(null);
-  const [form, setForm] = useState(EMPTY_FORM);
+  const [form, setForm] = useState<FormState>(EMPTY_FORM);
   const [saving, setSaving] = useState(false);
   const [deleting, setDeleting] = useState<string | null>(null);
 
@@ -93,7 +104,7 @@ export default function AdminMembersPage() {
       full_name: m.full_name,
       email: m.email || "",
       phone: m.phone || "",
-      gender: m.gender,
+      gender: m.gender as "Pria" | "Wanita",
       membership_type: m.membership_type,
       membership_start: m.membership_start || "",
       membership_end: m.membership_end || "",

@@ -1,7 +1,7 @@
 import { createSupabaseServerClient } from "@/lib/supabase-server";
 import Link from "next/link";
 import {
-  Dumbbell, Users, Calendar, ArrowRight, MapPin, Trophy, Zap, Shield, ChevronDown, Clock, UserSquare2, FileText,
+  Dumbbell, Users, Calendar, ArrowRight, Trophy, Zap, Shield, ChevronDown, Clock, UserSquare2, FileText,
 } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -179,28 +179,9 @@ export default async function LandingPage() {
                 ))}
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {[
-                  { name: "Andi Prasetyo", specialty: "Strength & Conditioning", years: 8, img: "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=1780&auto=format&fit=crop" },
-                  { name: "Sari Dewi", specialty: "Yoga & Pilates", years: 6, img: "https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=1887&auto=format&fit=crop" },
-                  { name: "Budi Santoso", specialty: "HIIT & Cardio", years: 5, img: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=2070&auto=format&fit=crop" },
-                ].map((t, i) => (
-                  <div key={i} className="group border border-white/10 hover:border-primary/40 transition-all overflow-hidden">
-                    <div className="relative aspect-square overflow-hidden">
-                      <img src={t.img} alt={t.name} className="w-full h-full object-cover object-top opacity-80 group-hover:scale-105 transition-transform duration-500" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                      <div className="absolute bottom-4 left-4">
-                        <div className="bg-primary text-black text-xs font-black tracking-widest px-3 py-1">{t.years} THN</div>
-                      </div>
-                    </div>
-                    <div className="p-6 space-y-2">
-                      <h4 className="text-xl font-black text-white">{t.name}</h4>
-                      <p className="text-primary text-xs font-black tracking-widest flex items-center gap-1">
-                        <Dumbbell className="w-3 h-3" /> {t.specialty}
-                      </p>
-                    </div>
-                  </div>
-                ))}
+              <div className="text-center py-16 border border-white/5">
+                <UserSquare2 className="w-12 h-12 text-gray-700 mx-auto mb-3" />
+                <p className="text-gray-600 text-sm">Trainer akan tampil di sini setelah ditambahkan via admin.</p>
               </div>
             )}
 
@@ -263,28 +244,9 @@ export default async function LandingPage() {
                 ))}
               </div>
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {[
-                  { title: "5 Latihan HIIT Terbaik untuk Pemula", cat: "Tips Latihan", img: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop", min: 5 },
-                  { title: "Protein: Berapa Kebutuhan Harian Anda?", cat: "Nutrisi", img: "https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=2070&auto=format&fit=crop", min: 4 },
-                  { title: "Kenapa Tidur Sama Pentingnya dengan Latihan", cat: "Recovery", img: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?q=80&w=1887&auto=format&fit=crop", min: 6 },
-                ].map((a, i) => (
-                  <Link key={i} href="/blog" className="group border border-white/10 hover:border-primary/40 transition-all overflow-hidden">
-                    <div className="relative aspect-video overflow-hidden">
-                      <img src={a.img} alt={a.title} className="w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-500" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                      <div className={`absolute top-4 left-4 ${CATEGORY_COLORS[a.cat]} text-white text-xs font-black tracking-widest px-3 py-1`}>
-                        {a.cat.toUpperCase()}
-                      </div>
-                    </div>
-                    <div className="p-6 space-y-3">
-                      <h4 className="font-black text-white text-lg leading-tight group-hover:text-primary transition-colors">{a.title}</h4>
-                      <div className="flex items-center gap-1 text-xs text-gray-600">
-                        <Clock className="w-3 h-3" /> {a.min} menit
-                      </div>
-                    </div>
-                  </Link>
-                ))}
+              <div className="text-center py-16 border border-white/5">
+                <FileText className="w-12 h-12 text-gray-700 mx-auto mb-3" />
+                <p className="text-gray-600 text-sm">Artikel akan tampil di sini setelah dipublish via admin.</p>
               </div>
             )}
           </div>
