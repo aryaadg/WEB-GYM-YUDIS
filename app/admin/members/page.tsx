@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 export const dynamic = 'force-dynamic';
 
@@ -177,7 +177,7 @@ export default function AdminMembersPage() {
           </div>
           <div>
             <h1 className="text-2xl font-black text-white tracking-tight">Kelola Member</h1>
-            <p className="text-gray-500 text-sm">Manajemen data seluruh member YUDIS GYM</p>
+            <p className="text-gray-500 text-sm">Manajemen data seluruh member DE GYM BALI</p>
           </div>
         </div>
         <button

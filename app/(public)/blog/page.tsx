@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Clock, FileText } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase-server";
@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Blog & Tips Fitness",
-  description: "Baca artikel, tips fitness, dan panduan nutrisi terbaru dari trainer profesional YUDIS GYM.",
+  description: "Baca artikel, tips fitness, dan panduan nutrisi terbaru dari trainer profesional DE GYM BALI.",
 };
 
 const CATEGORY_COLORS: Record<string, string> = {
@@ -56,7 +56,7 @@ export default async function BlogPage() {
               BLOG & <span className="text-primary">TIPS</span>
             </h1>
             <p className="text-xl text-gray-400 leading-relaxed">
-              Artikel, tips fitness, dan panduan nutrisi terbaru dari trainer dan ahli kesehatan YUDIS GYM.
+              Artikel, tips fitness, dan panduan nutrisi terbaru dari trainer dan ahli kesehatan DE GYM BALI.
             </p>
           </div>
         </div>

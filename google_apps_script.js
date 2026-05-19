@@ -1,5 +1,5 @@
-/**
- * YUDIS GYM — Google Apps Script untuk menerima booking
+﻿/**
+ * DE GYM BALI — Google Apps Script untuk menerima booking
  * 
  * CARA DEPLOY:
  * 1. Buka https://script.google.com
@@ -16,7 +16,7 @@
  */
 
 const SPREADSHEET_ID = "GANTI_DENGAN_ID_SPREADSHEET_ANDA";
-const SHEET_NAME = "Bookings YUDIS GYM";
+const SHEET_NAME = "Bookings DE GYM BALI";
 
 function doPost(e) {
   try {

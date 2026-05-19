@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { Phone, MapPin, Award, Users, Dumbbell, Trophy } from "lucide-react";
 
@@ -12,7 +12,7 @@ function InstagramIcon({ className }: { className?: string }) {
 
 export const metadata: Metadata = {
   title: "Tentang Kami",
-  description: "Kenali lebih dekat YUDIS GYM — pusat kebugaran premium yang hadir untuk membantu Anda mencapai tujuan fitness terbaik.",
+  description: "Kenali lebih dekat DE GYM BALI — pusat kebugaran premium yang hadir untuk membantu Anda mencapai tujuan fitness terbaik.",
 };
 
 export default function AboutPage() {
@@ -28,10 +28,10 @@ export default function AboutPage() {
             <p className="text-primary font-black tracking-widest text-sm mb-4">SIAPA KAMI</p>
             <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-none mb-8">
               TENTANG <br />
-              <span className="text-primary">YUDIS GYM</span>
+              <span className="text-primary">DE GYM BALI</span>
             </h1>
             <p className="text-xl text-gray-400 leading-relaxed">
-              YUDIS GYM bukan sekadar tempat olahraga — ini adalah komunitas dan gaya hidup. Kami hadir untuk membantu setiap orang meraih versi terbaik dari dirinya melalui program fitness yang terstruktur dan lingkungan yang mendukung.
+              DE GYM BALI bukan sekadar tempat olahraga — ini adalah komunitas dan gaya hidup. Kami hadir untuk membantu setiap orang meraih versi terbaik dari dirinya melalui program fitness yang terstruktur dan lingkungan yang mendukung.
             </p>
           </div>
         </div>
@@ -45,7 +45,7 @@ export default function AboutPage() {
               <div className="aspect-[4/5] overflow-hidden">
                 <img
                   src="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=2070&auto=format&fit=crop"
-                  alt="YUDIS GYM Interior"
+                  alt="DE GYM BALI Interior"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -63,7 +63,7 @@ export default function AboutPage() {
                 </h2>
               </div>
               <p className="text-gray-400 text-lg leading-relaxed">
-                Didirikan pada tahun 2020, YUDIS GYM lahir dari sebuah visi sederhana: menciptakan ruang yang inklusif, profesional, dan menginspirasi untuk semua orang yang ingin hidup lebih sehat.
+                Didirikan pada tahun 2020, DE GYM BALI lahir dari sebuah visi sederhana: menciptakan ruang yang inklusif, profesional, dan menginspirasi untuk semua orang yang ingin hidup lebih sehat.
               </p>
               <p className="text-gray-400 text-lg leading-relaxed">
                 Kini, dengan lebih dari <strong className="text-white">2000+ member aktif</strong>, kami terus berinovasi menghadirkan fasilitas terbaik, program latihan terkini, dan komunitas yang saling mendukung.
@@ -105,7 +105,7 @@ export default function AboutPage() {
               {
                 icon: Users,
                 title: "KOMUNITAS",
-                desc: "Di YUDIS GYM, Anda bukan sekadar member. Anda adalah bagian dari keluarga yang saling mendukung dan menginspirasi satu sama lain.",
+                desc: "Di DE GYM BALI, Anda bukan sekadar member. Anda adalah bagian dari keluarga yang saling mendukung dan menginspirasi satu sama lain.",
               },
               {
                 icon: Award,
@@ -176,7 +176,7 @@ export default function AboutPage() {
                       rel="noopener noreferrer"
                       className="text-white font-bold hover:text-primary transition-colors"
                     >
-                      @yudisgym
+                      @degymbali
                     </a>
                   </div>
                 </div>
@@ -188,7 +188,7 @@ export default function AboutPage() {
               <Dumbbell className="w-16 h-16 text-primary mx-auto mb-6" />
               <h3 className="text-3xl font-black mb-4">SIAP BERGABUNG?</h3>
               <p className="text-gray-400 mb-8 leading-relaxed">
-                Mulai perjalanan fitness Anda bersama ribuan member YUDIS GYM. Dapatkan trial gratis 1 hari untuk merasakan perbedaannya!
+                Mulai perjalanan fitness Anda bersama ribuan member DE GYM BALI. Dapatkan trial gratis 1 hari untuk merasakan perbedaannya!
               </p>
               <div className="flex flex-col gap-4">
                 <a

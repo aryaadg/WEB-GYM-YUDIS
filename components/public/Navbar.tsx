@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -158,7 +158,7 @@ export default function Navbar() {
 
         <div className="absolute bottom-10 text-center">
           <p className="text-gray-500 text-xs font-bold tracking-widest">
-            YUDIS GYM — PREMIUM FITNESS CENTER
+            DE GYM BALI — PREMIUM FITNESS CENTER
           </p>
         </div>
       </div>

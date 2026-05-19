@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Toaster } from "sonner";
 import "./globals.css";
@@ -18,36 +18,36 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://yudis-gym.vercel.app"),
 
   title: {
-    default: "YUDIS GYM — Premium Fitness & Training Center",
-    template: "%s | YUDIS GYM",
+    default: "DE GYM BALI — Premium Fitness & Training Center",
+    template: "%s | DE GYM BALI",
   },
   description:
-    "YUDIS GYM adalah pusat kebugaran premium dengan peralatan modern, pelatih berpengalaman, dan program latihan yang disesuaikan dengan kebutuhan Anda. Bergabunglah sekarang dan raih tubuh impian Anda.",
+    "DE GYM BALI adalah pusat kebugaran premium dengan peralatan modern, pelatih berpengalaman, dan program latihan yang disesuaikan dengan kebutuhan Anda. Bergabunglah sekarang dan raih tubuh impian Anda.",
   keywords: [
     "gym indonesia",
     "fitness center",
     "personal trainer",
     "program latihan",
     "pusat kebugaran",
-    "YUDIS GYM",
+    "DE GYM BALI",
     "membership gym",
     "kelas fitness",
   ],
-  authors: [{ name: "YUDIS GYM" }],
-  creator: "YUDIS GYM",
+  authors: [{ name: "DE GYM BALI" }],
+  creator: "DE GYM BALI",
   openGraph: {
     type: "website",
     locale: "id_ID",
     url: "https://yudis-gym.vercel.app",
-    siteName: "YUDIS GYM",
-    title: "YUDIS GYM — Premium Fitness & Training Center",
+    siteName: "DE GYM BALI",
+    title: "DE GYM BALI — Premium Fitness & Training Center",
     description:
       "Pusat kebugaran premium dengan peralatan modern, pelatih profesional, dan komunitas yang mendukung perjalanan fitness Anda.",
-    images: [{ url: "/icon.png", width: 1200, height: 630, alt: "YUDIS GYM" }],
+    images: [{ url: "/icon.png", width: 1200, height: 630, alt: "DE GYM BALI" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "YUDIS GYM — Premium Fitness & Training Center",
+    title: "DE GYM BALI — Premium Fitness & Training Center",
     description: "Pusat kebugaran premium untuk semua level.",
     images: ["/icon.png"],
   },

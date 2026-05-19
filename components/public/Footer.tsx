@@ -1,4 +1,4 @@
-import Link from "next/link";
+﻿import Link from "next/link";
 import { Dumbbell, MapPin, Phone, Mail, Clock } from "lucide-react";
 
 // Custom SVG Icons untuk social media
@@ -45,7 +45,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-primary transition-colors"
-                aria-label="Instagram YUDIS GYM"
+                aria-label="Instagram DE GYM BALI"
               >
                 <InstagramIcon className="h-5 w-5" />
               </a>
@@ -54,7 +54,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-primary transition-colors"
-                aria-label="Facebook YUDIS GYM"
+                aria-label="Facebook DE GYM BALI"
               >
                 <FacebookIcon className="h-5 w-5" />
               </a>
@@ -107,7 +107,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="h-5 w-5 text-primary shrink-0" />
-                <span>info@yudisgym.com</span>
+                <span>info@degymbali.com</span>
               </li>
             </ul>
           </div>
@@ -137,7 +137,7 @@ export default function Footer() {
 
         <div className="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs font-bold tracking-widest text-gray-600">
-            © {currentYear} YUDIS GYM. ALL RIGHTS RESERVED.
+            © {currentYear} DE GYM BALI. ALL RIGHTS RESERVED.
           </p>
           <p className="text-xs text-gray-700 font-medium">Premium Fitness & Training Center</p>
         </div>

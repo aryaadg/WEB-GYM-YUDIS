@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 export const dynamic = 'force-dynamic';
 
@@ -42,7 +42,7 @@ const EMPTY_FORM = {
   excerpt: "",
   content: "",
   cover_image_url: "",
-  author_name: "Admin YUDIS GYM",
+  author_name: "Admin DE GYM BALI",
   read_time_minutes: 5,
   is_published: false,
 };

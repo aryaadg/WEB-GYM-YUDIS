@@ -1,4 +1,4 @@
-import { createSupabaseServerClient } from "@/lib/supabase-server";
+﻿import { createSupabaseServerClient } from "@/lib/supabase-server";
 import Link from "next/link";
 import {
   Dumbbell, Users, Calendar, ArrowRight, Trophy, Zap, Shield, ChevronDown, Clock, UserSquare2, FileText,
@@ -17,7 +17,7 @@ const features = [
   { icon: Dumbbell, title: "PERALATAN PREMIUM", desc: "Lebih dari 150 mesin dan alat fitness berteknologi tinggi." },
   { icon: Users, title: "TRAINER BERSERTIFIKAT", desc: "Tim pelatih profesional bersertifikat internasional." },
   { icon: Calendar, title: "KELAS BERAGAM", desc: "50+ kelas per minggu: Yoga, HIIT, Muay Thai, Zumba." },
-  { icon: Trophy, title: "HASIL TERBUKTI", desc: "Ribuan member telah transformasi bersama YUDIS GYM." },
+  { icon: Trophy, title: "HASIL TERBUKTI", desc: "Ribuan member telah transformasi bersama DE GYM BALI." },
   { icon: Zap, title: "AKSES 24/7", desc: "Berlatih kapan saja, gym kami selalu buka." },
   { icon: Shield, title: "LINGKUNGAN AMAN", desc: "CCTV 24 jam, kebersihan terjaga, staff siap membantu." },
 ];
@@ -63,7 +63,7 @@ export default async function LandingPage() {
           <div className="absolute inset-0 z-0">
             <img
               src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop"
-              alt="YUDIS GYM"
+              alt="DE GYM BALI"
               className="w-full h-full object-cover opacity-50"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-black via-black/40 to-transparent" />
@@ -302,7 +302,7 @@ export default async function LandingPage() {
               SIAP UNTUK <br /> MULAI?
             </h2>
             <p className="text-2xl text-black/80 font-bold max-w-2xl mx-auto">
-              Bergabunglah bersama {memberCount > 0 ? `${memberCount}+` : "ribuan"} member YUDIS GYM dan transformasikan hidup Anda.
+              Bergabunglah bersama {memberCount > 0 ? `${memberCount}+` : "ribuan"} member DE GYM BALI dan transformasikan hidup Anda.
             </p>
             <Link href="/join" className="bg-black text-white hover:bg-black/90 text-xl font-black px-16 h-20 inline-flex items-center justify-center transition-colors">
               DAFTAR SEKARANG

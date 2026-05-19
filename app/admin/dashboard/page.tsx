@@ -1,4 +1,4 @@
-import { createSupabaseServerClient } from "@/lib/supabase-server";
+﻿import { createSupabaseServerClient } from "@/lib/supabase-server";
 import { Users, FileText, ArrowRight, UserSquare2, Activity, Dumbbell } from "lucide-react";
 import Link from "next/link";
 
@@ -53,7 +53,7 @@ export default async function AdminDashboardPage() {
           <h1 className="text-3xl font-black text-white tracking-tight">Dashboard Admin</h1>
         </div>
         <p className="text-gray-500 font-medium pl-14">
-          Selamat datang kembali! Pantau performa YUDIS GYM hari ini.
+          Selamat datang kembali! Pantau performa DE GYM BALI hari ini.
         </p>
       </header>
 
@@ -91,10 +91,10 @@ export default async function AdminDashboardPage() {
         </div>
 
         <div className="bg-primary/10 border border-primary/20 p-8">
-          <h2 className="text-lg font-black text-primary tracking-tight mb-6">YUDIS GYM ADMIN</h2>
+          <h2 className="text-lg font-black text-primary tracking-tight mb-6">DE GYM BALI ADMIN</h2>
           <div className="space-y-3 text-sm text-gray-400">
             <p className="leading-relaxed">
-              Selamat datang di panel admin <strong className="text-white">YUDIS GYM</strong>. Kelola seluruh operasional gym dengan mudah.
+              Selamat datang di panel admin <strong className="text-white">DE GYM BALI</strong>. Kelola seluruh operasional gym dengan mudah.
             </p>
             <div className="space-y-2 pt-2">
               {[

@@ -1,5 +1,5 @@
--- ============================================================
--- YUDIS GYM — DATABASE SETUP SCRIPT
+﻿-- ============================================================
+-- DE GYM BALI — DATABASE SETUP SCRIPT
 -- Jalankan script ini di Supabase SQL Editor
 -- ============================================================
 
@@ -55,7 +55,7 @@ create table if not exists public.articles (
     excerpt text,
     content text,
     cover_image_url text,
-    author_name text default 'Admin YUDIS GYM',
+    author_name text default 'Admin DE GYM BALI',
     read_time_minutes integer default 5,
     is_published boolean default false,
     published_at timestamp with time zone,
@@ -158,17 +158,17 @@ create index if not exists idx_articles_published_at on public.articles(publishe
 -- Sample Trainers
 insert into public.trainers (full_name, email, phone, specialty, experience_years, certifications, bio, is_active)
 values
-  ('Andi Prasetyo', 'andi@yudisgym.com', '081234567890', 'Strength & Conditioning', 8, ARRAY['NSCA-CSCS', 'CPT ACE', 'Nutrition Coach'], 'Spesialis strength training dengan pengalaman 8 tahun melatih lebih dari 300 atlet.', true),
-  ('Sari Dewi', 'sari@yudisgym.com', '081234567891', 'Yoga & Pilates', 6, ARRAY['RYT-500 Yoga Alliance', 'PMA-CPT Pilates'], 'Instruktur yoga dan pilates bersertifikat internasional, fokus pada keseimbangan fisik dan mental.', true),
-  ('Budi Santoso', 'budi@yudisgym.com', '081234567892', 'HIIT & Cardio', 5, ARRAY['ACE Group Fitness', 'TRX Certified'], 'Spesialis HIIT dan kelas cardio yang energetik dan memotivasi.', true)
+  ('Andi Prasetyo', 'andi@degymbali.com', '081234567890', 'Strength & Conditioning', 8, ARRAY['NSCA-CSCS', 'CPT ACE', 'Nutrition Coach'], 'Spesialis strength training dengan pengalaman 8 tahun melatih lebih dari 300 atlet.', true),
+  ('Sari Dewi', 'sari@degymbali.com', '081234567891', 'Yoga & Pilates', 6, ARRAY['RYT-500 Yoga Alliance', 'PMA-CPT Pilates'], 'Instruktur yoga dan pilates bersertifikat internasional, fokus pada keseimbangan fisik dan mental.', true),
+  ('Budi Santoso', 'budi@degymbali.com', '081234567892', 'HIIT & Cardio', 5, ARRAY['ACE Group Fitness', 'TRX Certified'], 'Spesialis HIIT dan kelas cardio yang energetik dan memotivasi.', true)
 on conflict (email) do nothing;
 
 -- Sample Articles
 insert into public.articles (title, slug, category, excerpt, author_name, read_time_minutes, is_published, published_at)
 values
-  ('5 Latihan HIIT Terbaik untuk Pemula', '5-latihan-hiit-terbaik', 'Tips Latihan', 'High-Intensity Interval Training yang efektif membakar lemak dan meningkatkan stamina dalam waktu singkat.', 'Admin YUDIS GYM', 5, true, now()),
-  ('Protein: Berapa Kebutuhan Harian Anda?', 'kebutuhan-protein-harian', 'Nutrisi', 'Protein adalah nutrisi paling penting untuk pembentukan otot. Pelajari cara menghitung kebutuhan protein harian Anda.', 'Admin YUDIS GYM', 4, true, now()),
-  ('Kenapa Tidur Cukup Sama Pentingnya dengan Latihan', 'pentingnya-tidur-untuk-fitness', 'Recovery', 'Banyak orang mengabaikan pentingnya tidur dalam perjalanan fitness mereka. Pelajari hubungannya.', 'Admin YUDIS GYM', 6, true, now())
+  ('5 Latihan HIIT Terbaik untuk Pemula', '5-latihan-hiit-terbaik', 'Tips Latihan', 'High-Intensity Interval Training yang efektif membakar lemak dan meningkatkan stamina dalam waktu singkat.', 'Admin DE GYM BALI', 5, true, now()),
+  ('Protein: Berapa Kebutuhan Harian Anda?', 'kebutuhan-protein-harian', 'Nutrisi', 'Protein adalah nutrisi paling penting untuk pembentukan otot. Pelajari cara menghitung kebutuhan protein harian Anda.', 'Admin DE GYM BALI', 4, true, now()),
+  ('Kenapa Tidur Cukup Sama Pentingnya dengan Latihan', 'pentingnya-tidur-untuk-fitness', 'Recovery', 'Banyak orang mengabaikan pentingnya tidur dalam perjalanan fitness mereka. Pelajari hubungannya.', 'Admin DE GYM BALI', 6, true, now())
 on conflict (slug) do nothing;
 
 -- ============================================================

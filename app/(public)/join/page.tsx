@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 export const dynamic = 'force-dynamic';
 
@@ -54,7 +54,7 @@ const plans = [
       "Analisis komposisi tubuh bulanan",
       "Priority booking semua kelas",
       "Guest pass 2x/bulan",
-      "Merchandise YUDIS GYM eksklusif",
+      "Merchandise DE GYM BALI eksklusif",
     ],
     notIncluded: [],
     cta: "PILIH ELITE",
@@ -97,7 +97,7 @@ export default function JoinPage() {
       : "Secepatnya";
 
     return encodeURIComponent(
-      `*PENDAFTARAN MEMBERSHIP YUDIS GYM* 🏋️‍♂️\n\n` +
+      `*PENDAFTARAN MEMBERSHIP DE GYM BALI* 🏋️‍♂️\n\n` +
       `Paket     : *${selectedPlan}*\n` +
       `Nama      : ${form.full_name}\n` +
       `Email     : ${form.email || "-"}\n` +
@@ -185,7 +185,7 @@ export default function JoinPage() {
             PILIH <span className="text-primary">PAKET</span> ANDA
           </h1>
           <p className="text-xl text-gray-400 leading-relaxed max-w-2xl mx-auto">
-            Investasikan diri Anda dengan membership YUDIS GYM. Fleksibel, terjangkau, dan tanpa kontrak jangka panjang.
+            Investasikan diri Anda dengan membership DE GYM BALI. Fleksibel, terjangkau, dan tanpa kontrak jangka panjang.
           </p>
         </div>
       </section>
@@ -264,7 +264,7 @@ export default function JoinPage() {
           </div>
           <div className="space-y-4">
             {[
-              { q: "Apakah ada masa percobaan gratis?", a: "Ya! Kami menyediakan 1 hari trial gratis untuk Anda merasakan fasilitas dan suasana YUDIS GYM sebelum mendaftar membership." },
+              { q: "Apakah ada masa percobaan gratis?", a: "Ya! Kami menyediakan 1 hari trial gratis untuk Anda merasakan fasilitas dan suasana DE GYM BALI sebelum mendaftar membership." },
               { q: "Apakah ada kontrak jangka panjang?", a: "Tidak ada kontrak mengikat. Membership dapat dibatalkan kapan saja dengan pemberitahuan 7 hari sebelum periode tagihan berikutnya." },
               { q: "Bagaimana cara mendaftar?", a: "Pilih paket yang sesuai, isi form pendaftaran, dan Anda akan diarahkan ke WhatsApp untuk konfirmasi dengan tim kami." },
               { q: "Apakah bisa freeze membership?", a: "Ya, Anda dapat membekukan membership hingga 30 hari per tahun jika tidak dapat berlatih karena sakit atau keperluan penting." },
@@ -445,7 +445,7 @@ export default function JoinPage() {
                 </div>
 
                 <p className="text-xs text-gray-600 text-center">
-                  Dengan mengirim form ini, Anda menyetujui untuk dihubungi oleh tim YUDIS GYM.
+                  Dengan mengirim form ini, Anda menyetujui untuk dihubungi oleh tim DE GYM BALI.
                 </p>
               </form>
             )}

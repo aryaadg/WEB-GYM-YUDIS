@@ -1,5 +1,5 @@
--- ============================================================
--- YUDIS GYM — SITE SETTINGS TABLE
+﻿-- ============================================================
+-- DE GYM BALI — SITE SETTINGS TABLE
 -- Jalankan script ini di Supabase SQL Editor
 -- ============================================================
 
@@ -38,13 +38,13 @@ with check (true);
 -- Default Settings (Insert)
 -- ============================================================
 insert into public.site_settings (key, value) values
-  ('gym_name',          'YUDIS GYM'),
+  ('gym_name',          'DE GYM BALI'),
   ('gym_tagline',       'Unleash Your Potential'),
   ('gym_description',   'Pusat kebugaran premium dengan peralatan world-class, pelatih ahli, dan komunitas yang mendorong hasil nyata.'),
   ('gym_address',       'Jl. Fitness No. 1, Jakarta Selatan'),
   ('gym_whatsapp',      '6281234567890'),
-  ('gym_email',         'info@yudisgym.com'),
-  ('gym_instagram',     'https://instagram.com/yudisgym'),
+  ('gym_email',         'info@degymbali.com'),
+  ('gym_instagram',     'https://instagram.com/degymbali'),
   ('gym_facebook',      ''),
   ('gym_tiktok',        ''),
   ('gym_youtube',       ''),

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 export const dynamic = 'force-dynamic';
 
@@ -78,7 +78,7 @@ export default function AdminBookingsPage() {
       : "Belum ditentukan";
     const msg = encodeURIComponent(
       `Halo ${booking.full_name}! 👋\n\n` +
-      `Kami dari *YUDIS GYM* ingin mengkonfirmasi pendaftaran membership Anda:\n\n` +
+      `Kami dari *DE GYM BALI* ingin mengkonfirmasi pendaftaran membership Anda:\n\n` +
       `Paket     : *${booking.membership_type}*\n` +
       `Mulai     : ${startDate}\n\n` +
       `Silakan hubungi kami untuk langkah selanjutnya. Terima kasih! 💪`

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 export const dynamic = 'force-dynamic';
 
@@ -45,7 +45,7 @@ const SECTIONS: Section[] = [
     label: "Informasi Gym",
     icon: Settings,
     fields: [
-      { key: "gym_name", label: "Nama Gym", placeholder: "YUDIS GYM" },
+      { key: "gym_name", label: "Nama Gym", placeholder: "DE GYM BALI" },
       { key: "gym_tagline", label: "Tagline", placeholder: "Unleash Your Potential" },
       { key: "gym_description", label: "Deskripsi", placeholder: "Deskripsi singkat gym", multiline: true },
     ],
@@ -57,7 +57,7 @@ const SECTIONS: Section[] = [
     fields: [
       { key: "gym_address", label: "Alamat Lengkap", placeholder: "Jl. Fitness No. 1, Jakarta Selatan", multiline: true },
       { key: "gym_whatsapp", label: "Nomor WhatsApp (tanpa +)", placeholder: "6281234567890", icon: Phone },
-      { key: "gym_email", label: "Email", placeholder: "info@yudisgym.com", icon: Mail },
+      { key: "gym_email", label: "Email", placeholder: "info@degymbali.com", icon: Mail },
       { key: "maps_embed_url", label: "URL Embed Google Maps", placeholder: "https://maps.google.com/maps?...", multiline: true },
     ],
   },
@@ -66,10 +66,10 @@ const SECTIONS: Section[] = [
     label: "Media Sosial",
     icon: Globe,
     fields: [
-      { key: "gym_instagram", label: "Instagram URL", placeholder: "https://instagram.com/yudisgym", icon: Link2 },
-      { key: "gym_facebook", label: "Facebook URL", placeholder: "https://facebook.com/yudisgym" },
-      { key: "gym_tiktok", label: "TikTok URL", placeholder: "https://tiktok.com/@yudisgym" },
-      { key: "gym_youtube", label: "YouTube URL", placeholder: "https://youtube.com/@yudisgym", icon: Video },
+      { key: "gym_instagram", label: "Instagram URL", placeholder: "https://instagram.com/degymbali", icon: Link2 },
+      { key: "gym_facebook", label: "Facebook URL", placeholder: "https://facebook.com/degymbali" },
+      { key: "gym_tiktok", label: "TikTok URL", placeholder: "https://tiktok.com/@degymbali" },
+      { key: "gym_youtube", label: "YouTube URL", placeholder: "https://youtube.com/@degymbali", icon: Video },
     ],
   },
   {
@@ -177,7 +177,7 @@ export default function PengaturanPage() {
           </div>
           <div>
             <h1 className="text-2xl font-black text-white tracking-tight">Pengaturan Website</h1>
-            <p className="text-gray-500 text-sm">Kelola seluruh konten dan informasi YUDIS GYM</p>
+            <p className="text-gray-500 text-sm">Kelola seluruh konten dan informasi DE GYM BALI</p>
           </div>
         </div>
         <button

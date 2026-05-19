@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { Dumbbell, Award, UserSquare2 } from "lucide-react";
 import { createSupabaseServerClient } from "@/lib/supabase-server";
@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Trainer Kami",
-  description: "Kenali trainer profesional bersertifikat di YUDIS GYM yang siap membimbing perjalanan fitness Anda.",
+  description: "Kenali trainer profesional bersertifikat di DE GYM BALI yang siap membimbing perjalanan fitness Anda.",
 };
 
 function InstagramIcon({ className }: { className?: string }) {

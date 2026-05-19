@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 export const dynamic = 'force-dynamic';
 
@@ -80,7 +80,7 @@ export default function AdminLoginPage() {
                   required
                   id="admin-email"
                   className="w-full bg-white/5 border border-white/10 focus:border-primary/50 py-4 pl-12 pr-4 text-white placeholder-gray-600 focus:outline-none focus:ring-1 focus:ring-primary/20 transition-all font-medium"
-                  placeholder="admin@yudisgym.com"
+                  placeholder="admin@degymbali.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
@@ -119,7 +119,7 @@ export default function AdminLoginPage() {
           </form>
 
           <p className="mt-8 text-center text-gray-600 text-xs font-medium">
-            © {new Date().getFullYear()} YUDIS GYM Admin System.{" "}
+            © {new Date().getFullYear()} DE GYM BALI Admin System.{" "}
             <br />
             Restricted access for authorized personnel only.
           </p>

@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
 import { Calendar, Clock, Users, Flame, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Kelas Fitness",
-  description: "Temukan kelas fitness terbaik di YUDIS GYM. Yoga, Pilates, HIIT, Zumba, Muay Thai dan banyak lagi.",
+  description: "Temukan kelas fitness terbaik di DE GYM BALI. Yoga, Pilates, HIIT, Zumba, Muay Thai dan banyak lagi.",
 };
 
 const classes = [

@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 export const dynamic = 'force-dynamic';
 
@@ -151,7 +151,7 @@ export default function AdminTrainersPage() {
           </div>
           <div>
             <h1 className="text-2xl font-black text-white tracking-tight">Kelola Trainer</h1>
-            <p className="text-gray-500 text-sm">Manajemen data trainer & pelatih YUDIS GYM</p>
+            <p className="text-gray-500 text-sm">Manajemen data trainer & pelatih DE GYM BALI</p>
           </div>
         </div>
         <button
