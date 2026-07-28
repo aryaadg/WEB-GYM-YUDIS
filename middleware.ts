@@ -1,39 +1,19 @@
-import { createServerClient, type CookieOptions } from '@supabase/ssr'
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
 
-export async function middleware(req: NextRequest) {
-  let res = NextResponse.next({
-    request: {
-      headers: req.headers,
-    },
-  })
-
-  const supabase = createServerClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
-    {
-      cookies: {
-        get(name: string) {
-          return req.cookies.get(name)?.value
-        },
-        set(name: string, value: string, options: CookieOptions) {
-          req.cookies.set({ name, value, ...options })
-          res = NextResponse.next({ request: { headers: req.headers } })
-          res.cookies.set({ name, value, ...options })
-        },
-        remove(name: string, options: CookieOptions) {
-          req.cookies.set({ name, value: '', ...options })
-          res = NextResponse.next({ request: { headers: req.headers } })
-          res.cookies.set({ name, value: '', ...options })
-        },
-      },
-    }
+// Cek session dari cookie JWT langsung (tanpa network call ke Supabase)
+// Ini jauh lebih cepat dan mencegah timeout di Vercel
+function hasSession(req: NextRequest): boolean {
+  // Supabase menyimpan session di cookie dengan prefix 'sb-'
+  const cookies = req.cookies.getAll()
+  return cookies.some(c =>
+    c.name.startsWith('sb-') && c.name.endsWith('-auth-token')
   )
+}
 
-  const { data: { session } } = await supabase.auth.getSession()
-
+export function middleware(req: NextRequest) {
   const pathname = req.nextUrl.pathname
+  const session = hasSession(req)
 
   // ============================================================
   // Protect ADMIN routes
@@ -66,13 +46,12 @@ export async function middleware(req: NextRequest) {
   }
 
   if (isMemberLoginPage && session) {
-    // Jika sudah login, cek apakah admin atau member
     const url = req.nextUrl.clone()
     url.pathname = '/member/dashboard'
     return NextResponse.redirect(url)
   }
 
-  return res
+  return NextResponse.next()
 }
 
 export const config = {
