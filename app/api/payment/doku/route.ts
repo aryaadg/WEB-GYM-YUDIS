@@ -52,12 +52,8 @@ export async function POST(req: NextRequest) {
     const environment = process.env.DOKU_ENVIRONMENT || 'sandbox';
 
     if (!clientId || !secretKey) {
-      console.warn('[DOKU] Kredensial belum diset — gunakan fallback');
-      await supabase
-        .from('bookings')
-        .update({ status: 'pending_payment' })
-        .eq('id', bookingId);
-      return NextResponse.json({ payment_url: callbackUrl });
+      console.warn('[DOKU] Kredensial belum diset');
+      return NextResponse.json({ error: 'Kredensial DOKU belum dikonfigurasi' }, { status: 500 });
     }
 
     // 3. Siapkan request DOKU
@@ -128,12 +124,7 @@ export async function POST(req: NextRequest) {
       const errText = await dokuRes.text();
       console.error('[DOKU] ❌ API error:', dokuRes.status, errText);
       console.error('[DOKU] Headers sent:', { clientId, requestId, requestTimestamp, signature });
-      // Fallback ke success page
-      await supabase
-        .from('bookings')
-        .update({ status: 'pending_payment' })
-        .eq('id', bookingId);
-      return NextResponse.json({ payment_url: callbackUrl });
+      return NextResponse.json({ error: `DOKU API Error: ${errText}` }, { status: dokuRes.status });
     }
 
     const dokuData = await dokuRes.json();
@@ -141,11 +132,7 @@ export async function POST(req: NextRequest) {
 
     if (!paymentUrl) {
       console.error('[DOKU] Tidak ada payment_url:', JSON.stringify(dokuData));
-      await supabase
-        .from('bookings')
-        .update({ status: 'pending_payment' })
-        .eq('id', bookingId);
-      return NextResponse.json({ payment_url: callbackUrl });
+      return NextResponse.json({ error: 'Tidak ada URL pembayaran dari DOKU' }, { status: 500 });
     }
 
     // 6. Update status booking ke pending_payment
