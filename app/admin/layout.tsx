@@ -16,12 +16,14 @@ import {
   Dumbbell,
   FileText,
   CalendarCheck,
+  ScanLine
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [user, setUser] = useState<{ email?: string } | null>(null);
+  const [checkingRole, setCheckingRole] = useState(true);
 
   const pathname = usePathname();
   const router = useRouter();
@@ -32,10 +34,36 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       const {
         data: { session },
       } = await supabase.auth.getSession();
-      if (session) setUser(session.user);
+      
+      if (session) {
+        // Cek apakah akun ini terdaftar di tabel admins
+        const { data: adminUser } = await supabase
+          .from("admins")
+          .select("id")
+          .eq("email", session.user.email)
+          .maybeSingle();
+
+        if (!adminUser) {
+          // Jika tidak ada di tabel admins, berarti dia member biasa (atau penyusup)!
+          router.push("/member/dashboard");
+          return;
+        }
+        
+        setUser(session.user);
+      }
+      setCheckingRole(false);
     };
     getUser();
-  }, [supabase]);
+  }, [supabase, router]);
+
+  // Don't render content while checking role to prevent layout flashing
+  if (checkingRole && pathname !== "/admin/login") {
+    return (
+      <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -45,10 +73,11 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   const menuItems = [
     { name: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
+    { name: "Scanner QR", href: "/admin/scanner", icon: ScanLine },
     { name: "Kelola Member", href: "/admin/members", icon: Users },
+    { name: "Jadwal Kelas", href: "/admin/classes", icon: CalendarCheck },
     { name: "Kelola Trainer", href: "/admin/trainers", icon: UserSquare2 },
     { name: "Artikel / Blog", href: "/admin/articles", icon: FileText },
-    { name: "Booking Masuk", href: "/admin/bookings", icon: CalendarCheck },
     { name: "Pengaturan Website", href: "/admin/pengaturan", icon: Settings },
   ];
 

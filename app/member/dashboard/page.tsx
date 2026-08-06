@@ -5,7 +5,8 @@ export const dynamic = 'force-dynamic';
 import { useState, useEffect } from "react";
 import { createClient } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
-import { Dumbbell, LogOut, Calendar, Clock, CheckCircle2, AlertTriangle, Loader2, RefreshCw } from "lucide-react";
+import { QRCodeSVG } from "qrcode.react";
+import { Dumbbell, LogOut, Calendar, Clock, CheckCircle2, AlertTriangle, Loader2, RefreshCw, QrCode } from "lucide-react";
 import Link from "next/link";
 
 type MemberData = {
@@ -17,6 +18,7 @@ type MemberData = {
   membership_start: string | null;
   membership_end: string | null;
   status: string;
+  qr_code: string;
 };
 
 const TYPE_COLORS: Record<string, string> = {
@@ -225,8 +227,36 @@ export default function MemberDashboardPage() {
                 )}
               </div>
 
+              {/* QR Code Section */}
+              <div className="bg-[#111111] border border-white/10 p-6 flex flex-col items-center text-center space-y-4">
+                <h2 className="text-xs font-black text-gray-500 uppercase tracking-widest flex items-center gap-2">
+                  <QrCode className="w-4 h-4" />
+                  QR Code Member Anda
+                </h2>
+                <div className="bg-white p-4 rounded-sm inline-block">
+                  <QRCodeSVG 
+                    value={member.qr_code || member.id} 
+                    size={200}
+                    level="H"
+                    includeMargin={true}
+                  />
+                </div>
+                <p className="text-gray-500 text-xs font-mono bg-white/5 px-3 py-1 rounded">
+                  ID: {member.qr_code || member.id}
+                </p>
+                {member.status === "Tidak Aktif" || member.status === "Expired" ? (
+                   <p className="text-yellow-400 text-sm font-medium animate-pulse">
+                     Tunjukkan QR Code ini ke kasir/resepsionis gym untuk melakukan pembayaran dan aktivasi membership Anda.
+                   </p>
+                ) : (
+                   <p className="text-gray-400 text-sm">
+                     Scan QR Code ini di meja resepsionis saat kedatangan.
+                   </p>
+                )}
+              </div>
+
               {/* Progress Bar */}
-              {!isExpired && (
+              {!isExpired && member.status === "Aktif" && (
                 <div>
                   <div className="flex justify-between text-xs text-gray-500 mb-2">
                     <span>Digunakan: {usedDays} hari</span>
@@ -263,21 +293,39 @@ export default function MemberDashboardPage() {
               </div>
             </div>
 
-            {/* Perpanjang / CTA */}
-            <div className="bg-[#111111] border border-white/10 p-6 space-y-4">
-              <h2 className="text-xs font-black text-gray-500 uppercase tracking-widest">Perpanjang Membership</h2>
-              <p className="text-gray-400 text-sm">
-                {isExpired
-                  ? "Membership Anda telah habis. Daftar ulang untuk melanjutkan akses gym."
-                  : `Membership Anda masih aktif ${remainingDays} hari. Perpanjang sebelum habis untuk tidak kehilangan akses.`}
-              </p>
-              <Link
-                href="/join"
-                className="flex items-center justify-center gap-2 w-full bg-primary text-black font-black text-sm py-4 hover:bg-primary/90 transition-colors"
-              >
-                <RefreshCw className="w-4 h-4" />
-                {isExpired ? "DAFTAR ULANG SEKARANG" : "PERPANJANG MEMBERSHIP"}
-              </Link>
+            {/* CTA Section */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Jadwal Kelas */}
+              <div className="bg-[#111111] border border-white/10 p-6 space-y-4">
+                <h2 className="text-xs font-black text-gray-500 uppercase tracking-widest">Jadwal Kelas</h2>
+                <p className="text-gray-400 text-sm h-10">
+                  Lihat jadwal kelas gym hari ini dan amankan slot Anda (kuota terbatas).
+                </p>
+                <Link
+                  href="/member/classes"
+                  className="flex items-center justify-center gap-2 w-full bg-white text-black font-black text-sm py-4 hover:bg-gray-200 transition-colors"
+                >
+                  <Calendar className="w-4 h-4" />
+                  BOOKING KELAS
+                </Link>
+              </div>
+
+              {/* Perpanjang Membership */}
+              <div className="bg-[#111111] border border-white/10 p-6 space-y-4">
+                <h2 className="text-xs font-black text-gray-500 uppercase tracking-widest">Perpanjang Membership</h2>
+                <p className="text-gray-400 text-sm h-10">
+                  {isExpired
+                    ? "Membership Anda telah habis. Daftar ulang untuk melanjutkan."
+                    : `Membership masih aktif ${remainingDays} hari. Perpanjang sekarang.`}
+                </p>
+                <Link
+                  href="/join"
+                  className="flex items-center justify-center gap-2 w-full bg-primary text-black font-black text-sm py-4 hover:bg-primary/90 transition-colors"
+                >
+                  <RefreshCw className="w-4 h-4" />
+                  {isExpired ? "DAFTAR ULANG" : "PERPANJANG"}
+                </Link>
+              </div>
             </div>
           </>
         )}

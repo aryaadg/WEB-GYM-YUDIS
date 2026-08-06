@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 export const dynamic = 'force-dynamic';
 
@@ -295,6 +295,29 @@ export default function AdminMembersPage() {
                         >
                           <Pencil className="w-4 h-4" />
                         </button>
+                        {m.status === "Tidak Aktif" && (
+                          <button
+                            onClick={async () => {
+                              if (!confirm(`Aktivasi member ${m.full_name}? (30 hari)`)) return;
+                              const start = new Date();
+                              const end = new Date();
+                              end.setDate(end.getDate() + 30);
+                              
+                              const { error } = await supabase.from("members").update({
+                                status: "Aktif",
+                                membership_start: start.toISOString().split('T')[0],
+                                membership_end: end.toISOString().split('T')[0]
+                              }).eq("id", m.id);
+                              
+                              if (error) toast.error("Gagal mengaktivasi member");
+                              else { toast.success("Member diaktifkan!"); fetchMembers(); }
+                            }}
+                            className="p-2 text-gray-400 hover:text-green-400 hover:bg-green-500/10 transition-colors"
+                            title="Aktivasi (Bayar di Gym)"
+                          >
+                            <CheckCircle2 className="w-4 h-4" />
+                          </button>
+                        )}
                         <button
                           onClick={() => handleDelete(m.id, m.full_name)}
                           disabled={deleting === m.id}

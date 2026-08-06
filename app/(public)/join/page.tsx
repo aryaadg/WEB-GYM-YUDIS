@@ -107,32 +107,47 @@ export default function JoinPage() {
 
     try {
       // Convert nama plan ke proper case untuk memenuhi DB constraint
-      // BASIC → Basic, PREMIUM → Premium, ELITE → Elite
       const membershipType = (selectedPlan.charAt(0).toUpperCase() + selectedPlan.slice(1).toLowerCase()) as "Basic" | "Premium" | "Elite";
 
-      // 1. Simpan ke Supabase — sertakan password_temp
-      const { data: insertedData, error: supabaseError } = await supabase
-        .from("bookings")
+      // 1. Sign up user ke Supabase Auth
+      toast.loading("Membuat akun member...", { id: "signup" });
+      const { data: authData, error: authError } = await supabase.auth.signUp({
+        email: form.email,
+        password: form.password,
+        options: {
+          data: {
+            full_name: form.full_name,
+          }
+        }
+      });
+
+      if (authError) {
+        throw new Error(authError.message);
+      }
+
+      if (!authData.user) {
+         throw new Error("Gagal membuat akun");
+      }
+
+      // 2. Simpan profil ke tabel members
+      const { error: memberError } = await supabase
+        .from("members")
         .insert({
           full_name: form.full_name,
           email: form.email,
           phone: form.phone,
           membership_type: membershipType,
-          message: form.message || null,
-          status: "Baru",
-          password_temp: form.password,
-        })
-        .select("id")
-        .single();
+          notes: form.message || null,
+          status: "Tidak Aktif", // Akan diaktifkan kasir di gym
+          auth_user_id: authData.user.id,
+        });
 
-      if (supabaseError) {
-        console.error("Supabase error:", supabaseError.message);
-        toast.error("Gagal menyimpan data: " + supabaseError.message);
-        setSubmitting(false);
-        return;
+      if (memberError) {
+        // Jika gagal insert member, tapi auth berhasil, ini butuh manual fix, tapi kita lempar error dulu
+        throw new Error("Gagal menyimpan profil member: " + memberError.message);
       }
 
-      // 2. Kirim ke Google Sheets jika tersedia
+      // 3. Kirim ke Google Sheets (Opsional)
       try {
         const { data: settingsData } = await supabase
           .from("site_settings")
@@ -155,47 +170,17 @@ export default function JoinPage() {
           });
         }
       } catch {
-        // Jangan blokir user jika Google Sheets gagal
+        // Abaikan error sheet
       }
 
-      // 3. Panggil DOKU Payment API
-      toast.loading("Menyiapkan halaman pembayaran...", { id: "payment" });
-
-      const paymentRes = await fetch("/api/payment/doku", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ bookingId: insertedData.id }),
-      });
-
-      toast.dismiss("payment");
-
-      if (!paymentRes.ok) {
-        const errData = await paymentRes.json().catch(() => ({}));
-        throw new Error(errData?.error || "Gagal menghubungi payment gateway");
-      }
-
-      const paymentData = await paymentRes.json();
-
-      if (paymentData?.payment_url) {
-        const paymentUrl: string = paymentData.payment_url;
-
-        // Jika URL adalah halaman internal (/success-payment), gunakan router
-        // Jika URL adalah DOKU external checkout, gunakan window.location
-        if (paymentUrl.startsWith('http://localhost') || paymentUrl.includes(window.location.host)) {
-          toast.success("Pendaftaran berhasil! Mengarahkan ke halaman sukses...");
-          window.location.href = '/success-payment';
-        } else {
-          toast.success("Mengarahkan ke halaman pembayaran DOKU...");
-          window.location.href = paymentUrl;
-        }
-        return;
-      }
-
-      // Fallback terakhir
-      toast.success("Pendaftaran berhasil!");
-      window.location.href = '/success-payment';
+      toast.dismiss("signup");
+      toast.success("Pendaftaran berhasil! Mengarahkan ke dashboard...");
+      
+      // Redirect ke member dashboard untuk melihat QR code
+      window.location.href = '/member/dashboard';
 
     } catch (err: unknown) {
+      toast.dismiss("signup");
       const msg = err instanceof Error ? err.message : "Terjadi kesalahan. Silakan coba lagi.";
       toast.error(msg);
       console.error(err);
@@ -301,7 +286,7 @@ export default function JoinPage() {
             {[
               { q: "Apakah ada masa percobaan gratis?", a: "Ya! Kami menyediakan 1 hari trial gratis untuk Anda merasakan fasilitas dan suasana DE GYM BALI sebelum mendaftar membership." },
               { q: "Apakah ada kontrak jangka panjang?", a: "Tidak ada kontrak mengikat. Membership dapat dibatalkan kapan saja dengan pemberitahuan 7 hari sebelum periode tagihan berikutnya." },
-              { q: "Bagaimana cara mendaftar?", a: "Pilih paket yang sesuai, isi form pendaftaran dengan email dan password, lalu bayar melalui DOKU Payment Gateway. Akun Anda akan aktif otomatis setelah pembayaran." },
+              { q: "Bagaimana cara mendaftar?", a: "Pilih paket yang sesuai, isi form pendaftaran, dan Anda akan mendapatkan QR Code. Tunjukkan QR Code tersebut ke kasir/resepsionis di gym untuk melakukan pembayaran dan aktivasi akun." },
               { q: "Apakah bisa freeze membership?", a: "Ya, Anda dapat membekukan membership hingga 30 hari per tahun jika tidak dapat berlatih karena sakit atau keperluan penting." },
             ].map((faq, i) => (
               <div key={i} className="border border-white/10 p-6 hover:border-primary/30 transition-colors">
@@ -344,7 +329,7 @@ export default function JoinPage() {
               <div className="flex items-center gap-3 bg-primary/5 border border-primary/20 p-3">
                 <CreditCard className="w-4 h-4 text-primary shrink-0" />
                 <p className="text-xs text-gray-300">
-                  Setelah submit, Anda akan diarahkan ke <strong className="text-primary">DOKU Payment Gateway</strong> untuk menyelesaikan pembayaran. Akun member dibuat otomatis setelah bayar.
+                  Setelah mendaftar, Anda akan mendapatkan <strong className="text-primary">QR Code</strong> di dashboard. Tunjukkan QR Code tersebut ke resepsionis gym untuk melakukan pembayaran dan aktivasi akun.
                 </p>
               </div>
 
@@ -417,7 +402,7 @@ export default function JoinPage() {
                     {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                   </button>
                 </div>
-                <p className="text-xs text-gray-600 mt-1">Password ini digunakan untuk login ke portal member setelah pembayaran.</p>
+                <p className="text-xs text-gray-600 mt-1">Password ini digunakan untuk login ke portal member setelah pendaftaran.</p>
               </div>
 
               {/* Pesan opsional */}
@@ -441,7 +426,7 @@ export default function JoinPage() {
                   <p className="text-primary font-black text-lg">{selectedPlan}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-xs text-gray-500">Total Bayar</p>
+                  <p className="text-xs text-gray-500">Tagihan di Gym</p>
                   <p className="text-white font-black">Rp {selectedPlanData?.price}</p>
                 </div>
               </div>
@@ -449,7 +434,7 @@ export default function JoinPage() {
               {/* Durasi info */}
               <div className="flex items-center gap-2 text-xs text-gray-500">
                 <CheckCircle2 className="w-3.5 h-3.5 text-green-400 shrink-0" />
-                <span>Membership aktif <strong className="text-white">30 hari</strong> sejak pembayaran dikonfirmasi</span>
+                <span>Membership aktif <strong className="text-white">30 hari</strong> sejak pembayaran dikonfirmasi di gym</span>
               </div>
 
               {/* Buttons */}
@@ -471,7 +456,7 @@ export default function JoinPage() {
                   ) : (
                     <Send className="w-4 h-4" />
                   )}
-                  {submitting ? "MEMPROSES..." : "DAFTAR & BAYAR SEKARANG"}
+                  {submitting ? "MEMPROSES..." : "DAFTAR SEKARANG"}
                 </button>
               </div>
 
