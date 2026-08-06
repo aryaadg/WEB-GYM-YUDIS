@@ -98,6 +98,7 @@ export default function MemberDashboardPage() {
               membership_start: booking.membership_start,
               membership_end: booking.membership_end,
               status: "Aktif",
+              qr_code: booking.id,
             });
           }
         }
