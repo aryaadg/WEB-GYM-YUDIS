@@ -148,7 +148,6 @@ export default function AdminScannerPage() {
                   onScan={handleScan}
                   onError={(error) => console.log(error?.message)}
                   components={{
-                    audio: false, // Disable default audio, we handle our own if needed
                     onOff: true,
                     torch: true,
                   }}
