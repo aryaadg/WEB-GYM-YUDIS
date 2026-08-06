@@ -1,4 +1,4 @@
-﻿import Link from "next/link";
+import Link from "next/link";
 import { Dumbbell, MapPin, Phone, Mail, Clock } from "lucide-react";
 
 // Custom SVG Icons untuk social media
@@ -33,7 +33,7 @@ export default function Footer() {
             >
               <Dumbbell className="h-8 w-8 text-primary" />
               <span>
-                YUDIS <span className="text-primary">GYM</span>
+                DE GYM <span className="text-primary">BALI</span>
               </span>
             </Link>
             <p className="text-sm text-gray-400 leading-relaxed">

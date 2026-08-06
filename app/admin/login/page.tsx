@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 export const dynamic = 'force-dynamic';
 
@@ -52,11 +52,8 @@ export default function AdminLoginPage() {
               <Dumbbell className="w-10 h-10 text-primary" />
             </div>
             <h1 className="text-3xl font-black text-white tracking-tight">
-              YUDIS <span className="text-primary">GYM</span>
+              DE GYM <span className="text-primary">BALI</span>
             </h1>
-            <p className="text-gray-500 font-bold tracking-widest text-xs mt-2">
-              ADMIN PANEL ACCESS
-            </p>
           </div>
 
           {/* Error */}

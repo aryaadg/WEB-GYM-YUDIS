@@ -105,7 +105,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </div>
           {isSidebarOpen && (
             <span className="ml-3 font-black text-xl tracking-tight transition-all duration-300">
-              YUDIS <span className="text-primary">GYM</span>
+              DE GYM <span className="text-primary">BALI</span>
             </span>
           )}
         </div>

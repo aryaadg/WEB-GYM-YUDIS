@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
@@ -55,8 +55,8 @@ export default function Navbar() {
           >
             <Dumbbell className="h-8 w-8 text-primary" />
             <span>
-              YUDIS{" "}
-              <span className="text-primary">GYM</span>
+              DE GYM{" "}
+              <span className="text-primary">BALI</span>
             </span>
           </Link>
 
